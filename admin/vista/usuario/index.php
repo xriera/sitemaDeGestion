@@ -19,7 +19,7 @@
                     echo "<td>" . $row['usu_telefono']. "</td>";
                     echo " <td>" . $row['usu_correo'] . "</td>";
                     echo " <td>" . $row['usu_fecha_nacimiento'] . "</td>";
-                     echo "   <td> <a href='modificar.php?cedula=". $row["cedula"] . "'>Modificar</a></td>";      
+                     echo "   <td> <a href='../../../vista/modificar.php?cedula=". $row["cedula"] . "'>Modificar</a></td>";      
                     echo "   <td> <a href='eliminarDatos.php?cedula=". $row["cedula"] . "' onclick='return confirm(\"¿Está seguro que desea eliminar?\")'>Eliminar</a></td>"; 
                     echo "</tr>";
                 }

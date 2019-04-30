@@ -13,21 +13,23 @@
 
     //incluir conexión a la base de datos
     include '../../config/conexionBD.php';
-    $cedula = isset($_POST["cedula"]) ? strtoupper(trim($_POST["cedula"])) : null;
-    $nombres = strtoupper(trim($_POST["nombres"]));
-    $apellidos = strtoupper(trim($_POST["apellidos"]));
-    $telefono = strtoupper(trim($_POST["telefono"]));
-    $genero = strtoupper(trim($_POST["genero"]));
-    $correo = strtoupper(trim($_POST["correo"]));
-    $contrasena = $_POST["contrasena"];
+            $cedula = isset($_POST["cedula"]) ? trim($_POST["cedula"]) : null;
+            $nombres = isset($_POST["nombres"]) ? mb_strtoupper(trim($_POST["nombres"]), 'UTF-8') : null; 
+            $apellidos = isset($_POST["apellidos"]) ? mb_strtoupper(trim($_POST["apellidos"]), 'UTF-8') : null; 
+            $direccion = isset($_POST["direccion"]) ? mb_strtoupper(trim($_POST["direccion"]), 'UTF-8') : null; 
+            $telefono = isset($_POST["telefono"]) ? trim($_POST["telefono"]): null;
+            $correo = isset($_POST["correo"]) ? trim($_POST["correo"]): null;
+            $fechaNacimiento = isset($_POST["fechaNacimiento"]) ? trim($_POST["fechaNacimiento"]): null; 
+            $contrasena = isset($_POST["contrasena"]) ? trim($_POST["contrasena"]) : null;
 
     $sql = "UPDATE DatosPersonales " .
-           "SET nombres = '$nombres', " .
-           "apellidos = '$apellidos', " .
-           "telefono = '$telefono', " .
-           "genero = '$genero', ". 
-           "correo = '$correo', ".
-           "contrasena = '$contrasena' ".
+           "SET usu_nombres = '$nombres', " .
+           "usu_apellidos = '$apellidos', " .
+           "usu_direccion = '$direccion', " .
+           "usu_telefono = '$telefono', ". 
+           "usu_correo = '$correo', ".
+           "usu_fecha_nacimiento = '$fechaNacimiento' ".
+           "usu_password = '$contrasena' ".
            "WHERE cedula = '$cedula'";
 
     if ($conn->query($sql) === TRUE) {
@@ -35,7 +37,7 @@
     } else {        
         echo "Error: " . $sql . "<br>" . $conn->errno . "<br>";        
     }
-    echo "<a href='home.php'>Regresar</a>";
+    echo "<a href='../vista/crear_usuario.html'>Regresar</a>";
 
     $conn->close();
     
