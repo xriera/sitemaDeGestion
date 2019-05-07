@@ -5,11 +5,6 @@
 </head>
 <body>
 <?php
-    session_start();    
-    if(!isset($_SESSION['logueado']) || $_SESSION['logueado'] != "true"){
-        echo "<script>alert('No tiene permisos para ingresar');</script>";
-        header("Location: iniciarSesion.php");
-    }
 
     //incluir conexión a la base de datos
     include '../../config/conexionBD.php';
@@ -22,7 +17,7 @@
             $fechaNacimiento = isset($_POST["fechaNacimiento"]) ? trim($_POST["fechaNacimiento"]): null; 
             $contrasena = isset($_POST["contrasena"]) ? trim($_POST["contrasena"]) : null;
 
-    $sql = "UPDATE DatosPersonales " .
+    $sql = "UPDATE usuario " .
            "SET usu_nombres = '$nombres', " .
            "usu_apellidos = '$apellidos', " .
            "usu_direccion = '$direccion', " .
@@ -30,7 +25,7 @@
            "usu_correo = '$correo', ".
            "usu_fecha_nacimiento = '$fechaNacimiento' ".
            "usu_password = '$contrasena' ".
-           "WHERE cedula = '$cedula'";
+           "WHERE usu_cedula = '$cedula'";
 
     if ($conn->query($sql) === TRUE) {
         echo "Se ha actualizado los datos personales correctamemte!!!<br>";     
