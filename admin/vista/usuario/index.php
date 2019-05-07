@@ -10,11 +10,7 @@
             <th>Fecha Nacimiento</th> </tr>
                 <?php
                 
-                 session_start();
-                if (!isset($_SESSION['logueado']) || $_SESSION['logueado'] != "true") {
-                    echo "<script>alert('No tiene permisos para ingresar');</script>";
-                    header("Location: iniciarSesion.php");
-                }
+
                 include '../../../config/conexionBD.php'; $sql = "SELECT * FROM usuario"; $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
