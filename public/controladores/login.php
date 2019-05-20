@@ -30,7 +30,8 @@
             <th>Fecha Nacimiento</th> </tr>
                 <?php
                 include '../../../config/conexionBD.php'; 
-                $sql = "SELECT * FROM usuario"; $result = $conn->query($sql);
+                $sql = "SELECT * FROM usuario"; 
+                $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     echo "<tr>";
@@ -45,7 +46,8 @@
                 
                 }else{
                     echo "<tr>";
-                    echo " <td colspan='7'> No existen usuarios registradas en el sistema </td>"; echo "</tr>";
+                    echo " <td colspan='7'> No existen usuarios registradas en el sistema </td>"; 
+                    echo "</tr>";
                 }
                 
             $conn->close(); ?>
